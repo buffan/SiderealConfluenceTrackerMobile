@@ -12,6 +12,8 @@ import com.example.andrew.siderealconfluencetracker.Model.Resources.TokenResourc
 
 public class RaceTokenCollectionViewModel extends ViewModel
 {
+    private static final String TAG ="ViewModel";
+
     private Race race;
 
     public ObservableInt blueCount;
@@ -46,13 +48,14 @@ public class RaceTokenCollectionViewModel extends ViewModel
 
     public void onIncrementResourceClick(TokenResourceType resourceType)
     {
-
+        Log.i(TAG, "Increment clicked: ".concat(resourceType.toString()));
         race.getTokenResources().incrementResource(resourceType);
         setChangedResource(resourceType);
     }
 
     public void onDecrementResourceClick(TokenResourceType resourceType)
     {
+        Log.i(TAG, "Decrement clicked: ".concat(resourceType.toString()));
         race.getTokenResources().decrementResource(resourceType);
         setChangedResource(resourceType);
     }
@@ -74,7 +77,7 @@ public class RaceTokenCollectionViewModel extends ViewModel
 
     public void onGetPointValueClick()
     {
-
+        Log.i(TAG, "Get point total clicked");
         pointValue.set(race.getTokenResources().getTotalPointValue());
     }
 }
