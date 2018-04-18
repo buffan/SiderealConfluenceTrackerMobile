@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="tokenYellow">#FFFF00</color>
+    <color name="tokenBlue">#0000FF</color>
+    <color name="tokenBlack">#000000</color>
+    <color name="tokenBrown">#8B4513</color>
+    <color name="tokenGreen">#228B22</color>
+    <color name="tokenWhite">#FFFFFF</color>
 </resources>

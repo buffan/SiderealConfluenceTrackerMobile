@@ -16,32 +16,28 @@ public class RaceTokenCollectionViewModel extends ViewModel
 
     private Race race;
 
-    public ObservableInt blueCount;
-    public ObservableInt blackCount;
-    public ObservableInt brownCount;
-    public ObservableInt cylinderCount;
-    public ObservableInt whiteCount;
-    public ObservableInt greenCount;
-    public ObservableInt yellowCount;
-    public ObservableInt shipCount;
+    public final ObservableInt blueCount = new ObservableInt();
+    public final ObservableInt blackCount = new ObservableInt();
+    public final ObservableInt brownCount = new ObservableInt();
+    public final ObservableInt cylinderCount = new ObservableInt();
+    public final ObservableInt whiteCount = new ObservableInt();
+    public final ObservableInt greenCount = new ObservableInt();
+    public final ObservableInt yellowCount = new ObservableInt();
+    public final ObservableInt shipCount = new ObservableInt();
 
-    public ObservableDouble pointValue;
+    public ObservableDouble pointValue = new ObservableDouble();
 
-    public RaceTokenCollectionViewModel()
+    public RaceTokenCollectionViewModel(Race race)
     {
-        this.race = new Race();
+        this.race = race;
+        Log.i(TAG, "Setting constructor resources");
         this.pointValue.set(race.getTokenResources().getTotalPointValue());
         this.blueCount.set(race.getTokenResources().getBlue());
         this.yellowCount.set(race.getTokenResources().getYellow());
+        
     }
 
-    public void onCreate()
-    {
-        this.race = new Race();
-        this.pointValue.set(race.getTokenResources().getTotalPointValue());
-        this.blueCount.set(race.getTokenResources().getBlue());
-        this.yellowCount.set(race.getTokenResources().getYellow());
-    }
+    public void onCreate() { }
     public void onPause() { }
     public void onResume() { }
     public void onDestroy() { }
