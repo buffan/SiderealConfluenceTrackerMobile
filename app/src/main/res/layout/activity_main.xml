@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.andrew.siderealconfluencetracker.ViewModel.RaceTokenCollectionViewModel"
+        />
+        <import type="com.example.andrew.siderealconfluencetracker.Model.Resources.TokenResourceType"/>
+    </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -38,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="DecrementBlue"
+                android:onClick="@{()->viewModel.onDecrementResourceClick(TokenResourceType.BLUE)}"
                 android:text="@string/minus_sign" />
 
             <TextView
@@ -46,13 +50,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@{viewModel.blueCount}"
                 />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="46dp"
                 android:layout_height="wrap_content"
-                android:onClick="IncrementBlue"
+                android:onClick="@{()->viewModel.onIncrementResourceClick(TokenResourceType.BLUE)}"
                 android:text="@string/plus_sign" />
         </LinearLayout>
 
@@ -71,7 +76,7 @@
                 android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="DecrementYellow"
+                android:onClick="@{() -> viewModel.onDecrementResourceClick(TokenResourceType.YELLOW)}"
                 android:text="@string/minus_sign" />
 
             <TextView
@@ -79,14 +84,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@{viewModel.yellowCount}"
                 />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="IncrementYellow"
+                android:onClick="@{()->viewModel.onIncrementResourceClick(TokenResourceType.YELLOW)}"
                 android:text="@string/plus_sign" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{String.valueOf(viewModel.pointValue)}" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Points"
+            android:onClick="@{()->viewModel.onGetPointValueClick()"/>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</layout>
