@@ -3,6 +3,8 @@ package com.example.andrew.siderealconfluencetracker.ViewModel;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableDouble;
 import android.databinding.ObservableInt;
+import android.util.Log;
+import android.view.View;
 
 import com.example.andrew.siderealconfluencetracker.Model.Races.Race;
 import com.example.andrew.siderealconfluencetracker.Model.Resources.TokenResourceType;
@@ -26,16 +28,25 @@ public class RaceTokenCollectionViewModel extends ViewModel
     public RaceTokenCollectionViewModel()
     {
         this.race = new Race();
-        this.pointValue.set(0);
+        this.pointValue.set(race.getTokenResources().getTotalPointValue());
+        this.blueCount.set(race.getTokenResources().getBlue());
+        this.yellowCount.set(race.getTokenResources().getYellow());
     }
 
-    public void onCreate() { this.race = new Race(); }
+    public void onCreate()
+    {
+        this.race = new Race();
+        this.pointValue.set(race.getTokenResources().getTotalPointValue());
+        this.blueCount.set(race.getTokenResources().getBlue());
+        this.yellowCount.set(race.getTokenResources().getYellow());
+    }
     public void onPause() { }
     public void onResume() { }
     public void onDestroy() { }
 
     public void onIncrementResourceClick(TokenResourceType resourceType)
     {
+
         race.getTokenResources().incrementResource(resourceType);
         setChangedResource(resourceType);
     }
@@ -63,6 +74,7 @@ public class RaceTokenCollectionViewModel extends ViewModel
 
     public void onGetPointValueClick()
     {
+
         pointValue.set(race.getTokenResources().getTotalPointValue());
     }
 }
